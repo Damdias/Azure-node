@@ -22,19 +22,12 @@ steps:
   inputs:
     SourceFolder: './'
     Contents: |
-      **\*.js
-      **\*.json
-    TargetFolder: './'
+      package.json         # Copy package.json to the staging folder
+      node_modules/**
+    TargetFolder: '$(Build.ArtifactStagingDirectory)/app'
 
-- task: ArchiveFiles@2
-  inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/app'
+    ArtifactName: 'nodejs-app'
     publishLocation: 'Container'
