@@ -18,6 +18,14 @@ steps:
 - script: |
     npm install
   displayName: 'npm install and build'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: './'
+    Contents: |
+      *.js
+      *.json
+    TargetFolder: './'
+
 - task: ArchiveFiles@2
   inputs:
     rootFolderOrFile: '$(Build.BinariesDirectory)'
