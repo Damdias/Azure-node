@@ -22,8 +22,8 @@ steps:
   inputs:
     SourceFolder: './'
     Contents: |
-      *.js
-      *.json
+      **\*.js
+      **\*.json
     TargetFolder: './'
 
 - task: ArchiveFiles@2
